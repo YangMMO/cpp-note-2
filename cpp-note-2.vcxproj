@@ -129,9 +129,6 @@
   <ItemGroup>
     <ClCompile Include="通讯录管理系统.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="cpp-note-2.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
