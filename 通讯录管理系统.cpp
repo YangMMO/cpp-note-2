@@ -82,6 +82,46 @@ void AddPerson(AddressBooks *abs)
     
 }
 
+// 显示联系人
+void showPerson(AddressBooks *abs)
+{
+    // 判断通讯录是否为空
+    if (abs->m_Size == 0) {
+        cout << "通讯录为空，无法显示联系人" << endl;
+        return;
+    } else {
+        for (int i = 0; i < abs->m_Size; i++)
+        {
+            cout << "姓名：" << abs->personArray[i].m_Name << "\t";
+            cout << "性别：" << (abs->personArray[i].m_Gender == 1 ? "男" : "女") << "\t";
+            cout << "年龄：" << abs->personArray[i].m_Age << "\t";
+            cout << "电话：" << abs->personArray[i].m_Phone << "\t";
+            cout << "地址：" << abs->personArray[i].m_Address << endl;
+        }
+
+        system("pause");
+        system("cls");  //清屏
+        
+    }
+    
+}
+
+// 检测联系人是否存在，存在返回下标，不存在返回-1
+// 参数1 通讯录 ， 参数2 对比名称
+int isExist(AddressBooks *abs, string name)
+{
+    for (int i = 0; i < abs->m_Size; i++)
+    {
+        // 找到姓名相同的联系人
+        if (abs->personArray[i].m_Name == name)
+        {
+            return i;   // 返回下标
+        }
+    }
+    return -1;   // 不存在返回-1  
+}
+
+
 
 // 菜单界面
 void showMenu()
@@ -124,9 +164,27 @@ int main()
             break;
         case 2:
             /* 显示联系人 */
+            showPerson(&abs);
             break;
         case 3:
+        {   // 如果 switch 内代码过程可能会报错，此时可以使用{}把代码括起来
             /* 删除联系人 */
+            cout << "请输入要删除的联系人姓名：" << endl;
+            string name;
+            cin >> name;
+            // 判断联系人是否存在
+            if (isExist(&abs, name) == -1)
+            {
+                cout << "联系人不存在，无法删除" << endl;
+            }
+            else
+            {
+                // 删除联系人
+                // deletePerson(&abs, name);
+
+                cout << "删除成功" << endl;
+            }
+        }
             break;
         case 4:
             /* 查询联系人 */
